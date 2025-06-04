@@ -187,7 +187,7 @@ public:
         cleanup();
     }
 
-    this(string title, uint width, uint height, int throttlingRate = 1) {
+    this(string title, uint width, uint height, int throttlingRate = 1, bool isFullScreen = false) {
         this.width_ = width;
         this.height_ = height;
 
@@ -212,14 +212,30 @@ public:
 
         // Create window with GL and resizing enabled,
         // important to give the GL hint
-        window = SDL_CreateWindow(
-            title.toStringz, 
-            SDL_WINDOWPOS_UNDEFINED, 
-            SDL_WINDOWPOS_UNDEFINED, 
-            width, 
-            height, 
-            SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE
-        );
+
+        if (isFullScreen) {
+
+            window = SDL_CreateWindow(
+                title.toStringz, 
+                SDL_WINDOWPOS_UNDEFINED, 
+                SDL_WINDOWPOS_UNDEFINED, 
+                width, 
+                height, 
+                SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP
+            );
+
+        } else {
+
+            window = SDL_CreateWindow(
+                title.toStringz, 
+                SDL_WINDOWPOS_UNDEFINED, 
+                SDL_WINDOWPOS_UNDEFINED, 
+                width, 
+                height, 
+                SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE
+            );
+
+        }
 
         // Create context and load GL functions
         glctx = SDL_GL_CreateContext(window);
