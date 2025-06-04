@@ -305,6 +305,20 @@ public:
 
     }
 
+    void toggleMaximized() {
+        
+        if ((SDL_GetWindowFlags(window) & SDL_WINDOW_MAXIMIZED) == 0) {
+
+            SDL_MaximizeWindow(window);
+
+        } else {
+
+            SDL_RestoreWindow(window);
+
+        }
+
+    }
+
     /**
         Gets whether a window should be processed
     */
