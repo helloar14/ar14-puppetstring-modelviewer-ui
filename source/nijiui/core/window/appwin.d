@@ -277,6 +277,20 @@ public:
         }
     }
 
+    void toggleFullscreen() {
+        
+        if ((SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN_DESKTOP) == 0) {
+
+            SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+
+        } else {
+
+            SDL_SetWindowFullscreen(window, 0);
+
+        }
+
+    }
+
     /**
         Gets whether a window should be processed
     */
