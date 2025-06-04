@@ -291,6 +291,20 @@ public:
 
     }
 
+    void toggleBorders() {
+        
+        if ((SDL_GetWindowFlags(window) & SDL_WINDOW_BORDERLESS) == 0) {
+
+            SDL_SetWindowBordered(window, SDL_FALSE);
+
+        } else {
+
+            SDL_SetWindowBordered(window, SDL_TRUE);
+
+        }
+
+    }
+
     /**
         Gets whether a window should be processed
     */
