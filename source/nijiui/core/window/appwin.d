@@ -221,7 +221,7 @@ public:
                 SDL_WINDOWPOS_UNDEFINED, 
                 width, 
                 height, 
-                SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP
+                SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED | SDL_WINDOW_BORDERLESS
             );
 
         } else {
@@ -329,6 +329,22 @@ public:
 
         } else {
 
+            SDL_RestoreWindow(window);
+
+        }
+
+    }
+
+    void toggleBorderlessMaximized() {
+        
+        if ((SDL_GetWindowFlags(window) & SDL_WINDOW_BORDERLESS) == 0) {
+
+            SDL_SetWindowBordered(window, SDL_FALSE);
+            SDL_MaximizeWindow(window);
+
+        } else {
+
+            SDL_SetWindowBordered(window, SDL_TRUE);
             SDL_RestoreWindow(window);
 
         }
